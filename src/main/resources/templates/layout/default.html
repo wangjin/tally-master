@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="../../static/css/admin-all-demo.css"
+          th:href="@{/css/admin-all-demo.css}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <!-- JS Core -->
+
+    <script type="text/javascript" src="../../static/js/js-core.js" th:src="@{/js/js-core.js}"></script>
+
+</head>
+<body>
+<div id="sb-site" style="min-height: 800px;">
+
+    <div id="loading" style="display: none;">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div id="page-header" class="bg-gradient-9">
+            <div id="mobile-navigation">
+                <button id="nav-toggle" class="collapsed" data-toggle="collapse" data-target="#page-sidebar">
+                    <span></span></button>
+                <a href="https://agileui.com/demo/monarch/demo/admin-template/index.html" class="logo-content-small"
+                   title="MonarchUI"></a>
+            </div>
+            <div id="header-logo" class="logo-bg">
+                <a href="https://agileui.com/demo/monarch/demo/admin-template/index.html" class="logo-content-big"
+                   title="MonarchUI">
+                    Monarch <i>UI</i>
+                    <span>The perfect solution for user interfaces</span>
+                </a>
+                <a href="https://agileui.com/demo/monarch/demo/admin-template/index.html" class="logo-content-small"
+                   title="MonarchUI">
+                    Monarch <i>UI</i>
+                    <span>The perfect solution for user interfaces</span>
+                </a>
+                <a id="close-sidebar" href="#"
+                   title="Close sidebar">
+                    <i class="glyph-icon icon-angle-left"></i>
+                </a>
+            </div>
+            <div id="header-nav-left">
+                <div class="user-account-btn dropdown">
+                    <a href="#" title="My Account"
+                       class="user-profile clearfix" data-toggle="dropdown">
+                        <img width="28" src="../../static/img/gravatar.jpg" th:src="@{/img/gravatar.jpg}"
+                             alt="Profile image"/>
+                        <span>Thomas Barnes</span>
+                        <i class="glyph-icon icon-angle-down"></i>
+                    </a>
+                    <div class="dropdown-menu float-left">
+                        <div class="box-sm">
+                            <div class="login-box clearfix">
+                                <div class="user-img">
+                                    <a href="#" title=""
+                                       class="change-img">Change photo</a>
+                                    <img src="../../static/img/gravatar.jpg" th:src="@{/img/gravatar.jpg}" alt=""/>
+                                </div>
+                                <div class="user-info">
+                            <span>
+                                Thomas Barnes
+                                <i>UX/UI developer</i>
+                            </span>
+                                    <a href="#"
+                                       title="Edit profile">Edit profile</a>
+                                    <a href="#"
+                                       title="View notifications">View notifications</a>
+                                </div>
+                            </div>
+                            <div class="divider"></div>
+                            <ul class="reset-ul mrg5B">
+                                <li>
+                                    <a href="#">
+                                        <i class="glyph-icon float-right icon-caret-right"></i>
+                                        View login page example
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="glyph-icon float-right icon-caret-right"></i>
+                                        View lockscreen example
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="glyph-icon float-right icon-caret-right"></i>
+                                        View account details
+
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="pad5A button-pane button-pane-alt text-center">
+
+                                <form th:action="@{/logout}" method="post" id="logout-form">
+                                    <a href="javascript:function logout() { document.getElementById('logout-form').submit(); }"
+                                       class="btn display-block font-normal btn-danger">
+                                        <i class="glyph-icon icon-power-off"></i>
+                                        Logout
+
+                                    </a>
+                                    <input type="submit" value="Sign Out"/>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- #header-nav-left -->
+
+            <div id="header-nav-right">
+
+                <a class="header-btn" id="logout-btn"
+                   href="https://agileui.com/demo/monarch/demo/admin-template/lockscreen-3.html"
+                   title="Lockscreen page example">
+                    <i class="glyph-icon icon-linecons-lock"></i>
+                </a>
+
+            </div><!-- #header-nav-right -->
+
+        </div>
+        <div id="page-sidebar" style="min-height: 500px;">
+            <div class="scroll-sidebar" style="min-height: 500px;">
+
+
+                <ul id="sidebar-menu" class="">
+                    <li class="header"><span>Overview</span></li>
+                    <li>
+                        <a href="/" th:href="@{/}"
+                           title="工作台" class="sfActive">
+                            <i class="glyph-icon icon-linecons-tv"></i>
+                            <span>工作台</span>
+                        </a>
+                    </li>
+
+                    <li class="header"><span>系统管理</span></li>
+                    <li>
+                        <a href="#" th:href="@{/module/list}"
+                           title="模块管理" class="sfActive">
+                            <i class="glyph-icon icon-linecons-tv"></i>
+                            <span>模块管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" th:href="@{/menu/list}"
+                           title="菜单管理" class="sfActive">
+                            <i class="glyph-icon icon-linecons-tv"></i>
+                            <span>菜单管理</span>
+                        </a>
+                    </li>
+                </ul><!-- #sidebar-menu -->
+
+
+            </div>
+        </div>
+        <div id="page-content-wrapper">
+            <div id="page-content" style="min-height: 500px;">
+                <div class="container">
+                    <section layout:fragment="content">page content</section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- JS Demo -->
+    <script type="text/javascript" src="../../static/js/admin-all-demo.js" th:src="@{/js/admin-all-demo.js}"></script>
+
+
+</div>
+</body>
+</html>
