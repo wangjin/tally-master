@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" type="text/css" href="../../static/css/admin-all-demo.css"
@@ -26,8 +27,7 @@
     <div id="page-wrapper">
         <div id="page-header" class="bg-gradient-9">
             <div id="mobile-navigation">
-                <button id="nav-toggle" class="collapsed" data-toggle="collapse" data-target="#page-sidebar">
-                    <span></span></button>
+                <button id="nav-toggle" class="collapsed" data-toggle="collapse" data-target="#page-sidebar"></button>
                 <a href="https://agileui.com/demo/monarch/demo/admin-template/index.html" class="logo-content-small"
                    title="MonarchUI"></a>
             </div>
@@ -53,7 +53,8 @@
                        class="user-profile clearfix" data-toggle="dropdown">
                         <img width="28" src="../../static/img/gravatar.jpg" th:src="@{/img/gravatar.jpg}"
                              alt="Profile image"/>
-                        <span>Thomas Barnes</span>
+                        <span sec:authentication="name">登录用户</span>
+
                         <i class="glyph-icon icon-angle-down"></i>
                     </a>
                     <div class="dropdown-menu float-left">
@@ -66,7 +67,7 @@
                                 </div>
                                 <div class="user-info">
                             <span>
-                                Thomas Barnes
+                                <span sec:authentication="name">登录用户</span>
                                 <i>UX/UI developer</i>
                             </span>
                                     <a href="#"
