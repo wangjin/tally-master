@@ -5,6 +5,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
@@ -22,6 +23,7 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
         String password = auth.getCredentials().toString();
 
         Set<GrantedAuthority> authorities = new HashSet<>();
+        authorities.add(new SimpleGrantedAuthority("USER"));
 
         if (username.equals("test") && password.equals("test")) {
             return new UsernamePasswordAuthenticationToken(username, "", authorities);
