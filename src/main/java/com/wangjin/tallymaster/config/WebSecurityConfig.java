@@ -30,12 +30,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()                                           //默认的"/logout", 允许访问
-                .permitAll();
+                .permitAll()
+                .and()
+                .sessionManagement()
+                .invalidSessionUrl("/login");
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        //添加内存用户
+        //添加内存用户，似乎与数据库用户认证方式不能同时使用
         auth.inMemoryAuthentication()
                 .withUser("admin").password("12345").roles("USER", "ADMIN").and()
                 .withUser("wangjin").password("wangjin").roles("USER", "ADMIN");
@@ -43,7 +46,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        super.configure(auth);
         auth.authenticationProvider(loginAuthenticationProvider);
     }
 }
