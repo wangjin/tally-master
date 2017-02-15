@@ -1,9 +1,14 @@
 package com.wangjin.tallymaster.config;
 
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created with Intellij IDEA by 王金 on 2017/2/15 下午4:54.
@@ -12,11 +17,22 @@ import org.springframework.stereotype.Component;
 public class LoginAuthenticationProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        return null;
+        UsernamePasswordAuthenticationToken auth = (UsernamePasswordAuthenticationToken) authentication;
+        String username = auth.getPrincipal().toString();
+        String password = auth.getCredentials().toString();
+
+        Set<GrantedAuthority> authorities = new HashSet<>();
+
+        if (username.equals("test") && password.equals("test")) {
+            return new UsernamePasswordAuthenticationToken(username, "", authorities);
+        } else {
+            return null;
+        }
+
     }
 
     @Override
     public boolean supports(Class<?> aClass) {
-        return false;
+        return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(aClass));
     }
 }
