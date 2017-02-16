@@ -1,6 +1,7 @@
 package com.wangjin.tallymaster.thymeleaf.processor;
 
 import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.thymeleaf.Arguments;
 import org.thymeleaf.Configuration;
 import org.thymeleaf.dom.Element;
@@ -31,15 +32,17 @@ public class MenuStateProcessor extends AbstractAttributeModifierAttrProcessor {
         IStandardExpressionParser parser = StandardExpressions.getExpressionParser(configuration);
         // 以一个标准Thymeleaf表达式解析属性值
         IStandardExpression iStandardExpression = parser.parseExpression(configuration, arguments, attributeValue);
-        // 取得传入的菜单URL
-        String menuURL = (String) iStandardExpression.execute(configuration, arguments);
+        // 取得传入的菜单URI
+        String menuURI = (String) iStandardExpression.execute(configuration, arguments);
 
         final Map<String, String> values = new HashMap<>();
         // 判断URL是否相同
-        HttpServletRequest httpServletRequest = (HttpServletRequest) RequestContextHolder.currentRequestAttributes();
-        String currentURL = httpServletRequest.getRequestURL().toString();
-        System.out.println(currentURL);
-        values.put("class", "active");
+        HttpServletRequest httpServletRequest = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+
+        String currentURI = httpServletRequest.getRequestURI();
+        if (menuURI.equals(currentURI)) {
+            values.put("class", "active");
+        }
         return values;
     }
 
